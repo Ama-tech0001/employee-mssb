@@ -29,7 +29,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/intenship")
 @AllArgsConstructor
@@ -54,7 +54,7 @@ public class EmployeeController {
 
 
     @GetMapping(value = "/employees")
-    @PreAuthorize("hasAuthority('LIST_CONTACT') or hasAuthority('UPDATE_CONTACT_PREFERENCE')")
+    //@PreAuthorize("hasAuthority('LIST_CONTACT') or hasAuthority('UPDATE_CONTACT_PREFERENCE')")
     public ResponseEntity<?> getAllEmployee() {
         LOGGER.trace("entering getAllEmployee() method");
         String message;
@@ -72,7 +72,7 @@ public class EmployeeController {
     }
 
     @PostMapping(value = "/employees/criterials")
-    @PreAuthorize("hasAuthority('LIST_CONTACT')")
+//    @PreAuthorize("hasAuthority('LIST_CONTACT')")
     public ResponseEntity<?> getAllEmployeeByCriterials(@Valid @RequestBody EmployeeCriteriaDto employeeCriteriaDto) {
         LOGGER.trace("entering getAllEmployeeByCriterials() method");
         String message;
@@ -92,7 +92,7 @@ public class EmployeeController {
 
 
     @PostMapping(value = "/employees/add")
-    @PreAuthorize("hasAuthority('ADD_CONTACT')")
+//    @PreAuthorize("hasAuthority('ADD_CONTACT')")
     public ResponseEntity<?> addEmployee(@Valid @RequestBody EmployeeDto employeeDto) {
         LOGGER.trace("entering addEmployee() method");
         String message;
@@ -345,6 +345,12 @@ public class EmployeeController {
         }
         EmployeeResponseDto employeeToUpdated = mapEmployeeToEmployeeResponseDTO(optionalEmployee.get());
         return ResponseEntity.ok(new CustumApiResponse(employeeToUpdated, CustumMessage.OPERATION_SUCCESS, CustumStatus.OK));
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<String> deleteEmployee(@RequestParam(name = "employee_id") Long id) {
+        employeeService.deleteEmployee(id);
+        return null;
     }
 
 

@@ -27,6 +27,7 @@ public class EmployeeDto {
     private String confirmationPassword;
     private String serveurId;
     private String fonction;
+    private String gender;
     private Boolean isPrincipal;
     @NotNull(message = CustumMessage.CHAMPS_OBLIGATOIRE_VIDE)
     private Long profilId;

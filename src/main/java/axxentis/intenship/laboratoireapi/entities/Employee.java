@@ -31,6 +31,7 @@ public class Employee extends Common {
     private Boolean statut;
     private String email;
     private String username;
+    private String gender;
     @JsonIgnore
     private String password;
     private Boolean onLine;

@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@CrossOrigin(origins = "*")
 @Validated
 @RestController
 @AllArgsConstructor
@@ -28,12 +29,12 @@ public class ScheduleController {
 
     private final ScheduleService scheduleService;
 
-    @PostMapping
+    @PostMapping("/add")
     public ResponseEntity<String> addSchedule(@RequestBody ScheduleDto scheduleDto) {
         return scheduleService.addNewSchedule(scheduleDto);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<ScheduleDto>> getAllTasks() {
         return scheduleService.getAllSchedules();
     }
@@ -43,12 +44,12 @@ public class ScheduleController {
         return scheduleService.getAllSchedulesByEmployee(employeeEmail);
     }
 
-    @PutMapping
+    @PutMapping("/update")
     public ResponseEntity<String> updateSchedule(@RequestBody ScheduleDto scheduleDto) {
         return scheduleService.updateSchedule(scheduleDto);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/delete")
     public ResponseEntity<String> deleteSchedule(@RequestParam(name = "schedule_id") Long scheduleId) {
         return scheduleService.deleteSchedule(scheduleId);
     }

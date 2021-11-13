@@ -33,7 +33,7 @@ public class SwaggerConfig {
                 .contact(
                         // TODO add your contact info here
                         new Contact(
-                                "Amandine Nangah",
+                                " Nangah Amandine ",
                                 "url",
                                 "email"
                         )

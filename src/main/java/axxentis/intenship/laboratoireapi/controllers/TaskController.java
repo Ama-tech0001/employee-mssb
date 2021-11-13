@@ -8,18 +8,19 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @AllArgsConstructor
 @RequestMapping(value = "/api/task")
 public class TaskController {
     private final TaskService taskService;
 
-    @PostMapping
+    @PostMapping("/add")
     public ResponseEntity<String> addTask(@RequestBody TaskDto taskDto) {
         return taskService.addNewTask(taskDto);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<TaskDto>> getAllTasks() {
         return taskService.getAllTasks();
     }
@@ -29,12 +30,12 @@ public class TaskController {
         return taskService.getAllTasksBySchedule(scheduleTitle);
     }
 
-    @PutMapping
+    @PutMapping("/update")
     public ResponseEntity<String> updateTask(@RequestBody TaskDto taskDto) {
         return taskService.updateTask(taskDto);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/delete")
     public ResponseEntity<String> deleteTask(@RequestParam(name = "task_id") Long taskId) {
         return taskService.deleteTask(taskId);
     }
