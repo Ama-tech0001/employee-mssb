@@ -46,8 +46,7 @@ public class DepartmentController {
 //           return departmentRepository.deleteById(idDepartment);
 //        }
 
-    @GetMapping(value = "/employees/find/{id}")
-    @PreAuthorize("hasAuthority('SHOW_CONTACT')")
+    @GetMapping(value = "/department/find/{id}")
     public ResponseEntity<?> findDepartmentById(@Valid @PathVariable(value = "id") @Min(1) Long id) {
         LOGGER.trace("entering getdepartmentById() method");
         Optional<Department> elementFound = departmentService.findDepartmentById(id);
